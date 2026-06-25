@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyash Anawane | AI/ML & Web Developer Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Shreyash Anawane, an AI/ML developer and full stack web engineering intern focused on deep learning, computer vision, and interactive web experiences.">
+    <meta name="keywords"
+        content="Shreyash Anawane, Shreyash Shashikant Anawane, Portfolio, AI Intern, ML Developer, VIRA, DefAI, Computer Engineering">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Interactive Canvas Background -->
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Page Transition overlay slider -->
+    <div id="page-transition-overlay"></div>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo" id="site-logo">
+                SHREYASH<span>.AI</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">About</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="project.html">Projects</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <button class="btn-icon" id="theme-toggle" title="Switch Theme">
+                        <!-- Sun SVG (Dark Mode Indicator) -->
+                        <svg class="theme-sun" viewBox="0 0 24 24">
+                            <path
+                                d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-12.37c-.39-.39-1.02-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.38-.38.38-1.02 0-1.41zM6.99 17.93c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.38.39-1.02 0-1.41z" />
+                        </svg>
+                        <!-- Moon SVG (Light Mode Indicator) -->
+                        <svg class="theme-moon" viewBox="0 0 24 24" style="display:none;">
+                            <path
+                                d="M12.3 2a10 10 0 0 0-1.9 19.8 10 10 0 0 0 12-12 10.3 10.3 0 0 0-.1-2 10 10 0 0 0-10-5.8zm.2 16.6A8.2 8.2 0 1 1 18.2 8a8.2 8.2 0 0 1-5.7 10.6z" />
+                        </svg>
+                    </button>
+                    <button class="btn-icon" id="audio-toggle" title="Toggle Interface Audio">
+                        <!-- Speaker On SVG -->
+                        <svg class="audio-enabled" viewBox="0 0 24 24">
+                            <path
+                                d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                        </svg>
+                        <!-- Speaker Mute SVG -->
+                        <svg class="audio-disabled" viewBox="0 0 24 24" style="display:none;">
+                            <path
+                                d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+                        </svg>
+                    </button>
+                    <button class="btn-icon" id="toggle-terminal" title="Launch Developer Console">
+                        <!-- Command Line SVG -->
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="badge">Biometric ID Verified</div>
+                <h1 class="hero-title">Hello, I am <br><span>Shreyash Anawane</span></h1>
+                <p class="hero-description">
+                    A passionate developer focused on AI/ML models, deep learning, computer vision, and building
+                    interactive full stack web applications. Currently building intelligent visual parsing engines.
+                </p>
+                <div class="contact-grid">
+                    <!-- Email Panel -->
+                    <div class="contact-card glass-panel copy-container" style="cursor: pointer;"
+                        title="Click to copy email">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;">
+                                <path
+                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label">Email Node</span>
+                            <a href="mailto:shreyashanawane@gmail.com" class="contact-link"
+                                onclick="event.preventDefault()">shreyashanawane@gmail.com</a>
+                            <span class="copy-hint">Copied to Clipboard!</span>
+                        </div>
+                    </div>
+
+                    <!-- Phone Panel -->
+                    <div class="contact-card glass-panel copy-container" style="cursor: pointer;"
+                        title="Click to copy phone">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;">
+                                <path
+                                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label">Comms Socket</span>
+                            <a href="tel:+919172617718" class="contact-link" onclick="event.preventDefault()">+91
+                                9172617718</a>
+                            <span class="copy-hint">Copied to Clipboard!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-grid" style="margin-top: 1rem;">
+                    <!-- LinkedIn Panel -->
+                    <a href="https://www.linkedin.com/in/shreyash-anawane-b3536837a?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                        target="_blank" class="contact-card glass-panel" style="text-decoration: none;">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;">
+                                <path
+                                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label">LinkedIn Grid</span>
+                            <span class="contact-link">Connect Profile</span>
+                        </div>
+                    </a>
+
+                    <!-- GitHub Panel -->
+                    <a href="https://github.com/BBSHREY247?tab=overview&from=2025-12-01&to=2025-12-31" target="_blank"
+                        class="contact-card glass-panel" style="text-decoration: none;">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;">
+                                <path
+                                    d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label">GitHub Core</span>
+                            <span class="contact-link">Explore Repos</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Biographical Card Panel -->
+            <div class="glass-panel" style="animation: float 6s ease-in-out infinite;">
+                <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center;">Biometric
+                    Parameters</h2>
+                <div class="profile-grid">
+                    <div class="profile-item">
+                        <span class="profile-label">Developer Identity</span>
+                        <span class="profile-value">Shreyash Shashikant Anawane</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="profile-label">Life Age</span>
+                        <span class="profile-value">19 Years</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="profile-label">Date of Birth</span>
+                        <span class="profile-value">18 - Dec - 2006</span>
+                    </div>
+                    <div class="profile-item" style="border-bottom: none;">
+                        <span class="profile-label">Geographic Address</span>
+                        <span class="profile-value" style="font-size: 1rem;">Shimpi Galli, Kalkai Chowk, tal. Shrigonda,
+                            dist. Ahilyanagar</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CLI Developer Command Terminal Overlay -->
+    <div class="terminal-overlay" id="terminal-overlay">
+        <div class="terminal-header">
+            <div class="terminal-dots">
+                <span class="terminal-dot dot-red"></span>
+                <span class="terminal-dot dot-yellow"></span>
+                <span class="terminal-dot dot-green"></span>
+            </div>
+            <div class="terminal-title">guest@shreyash-terminal: ~</div>
+            <div class="terminal-close" id="close-terminal">&times;</div>
+        </div>
+        <div class="terminal-body">
+            <div id="terminal-output">Welcome to VIRA Terminal Command Shell.
+                Type 'help' for a list of biometric directive keys.
+            </div>
+            <div class="terminal-input-line">
+                <span class="terminal-prompt">guest@shreyash-terminal:~$</span>
+                <input type="text" id="terminal-input" class="terminal-input" autofocus autocomplete="off"
+                    spellcheck="false">
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Terminal Button -->
+    <button class="terminal-button" id="toggle-terminal">CLI Console</button>
+
+    <footer>
+        <p>&copy; 2026 Shreyash Anawane. Decrypting solutions at CPU runtime.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
