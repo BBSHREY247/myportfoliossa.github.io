@@ -7,114 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     const state = {
         theme: localStorage.getItem('theme') || 'dark',
-        audioEnabled: localStorage.getItem('audioEnabled') === 'true',
-        audioContext: null,
         mouse: { x: null, y: null, targetX: 0, targetY: 0 },
         terminalOpen: false
     };
 
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const audioToggleBtn = document.getElementById('audio-toggle');
 
     // Initialize Theme
     document.documentElement.setAttribute('data-theme', state.theme);
     updateThemeIcon();
 
     // -------------------------------------------------------------
-    // 2. Audio Synthesizer (Web Audio API)
+    // 2. Sound Effects Stub (Disabled)
     // -------------------------------------------------------------
-    function initAudio() {
-        if (!state.audioContext) {
-            state.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        }
-    }
-
-    function playSynthNote(freq, duration, type = 'sine', volume = 0.05) {
-        if (!state.audioEnabled) return;
-        try {
-            initAudio();
-            if (state.audioContext.state === 'suspended') {
-                state.audioContext.resume();
-            }
-            
-            const osc = state.audioContext.createOscillator();
-            const gainNode = state.audioContext.createGain();
-            
-            osc.type = type;
-            osc.frequency.value = freq;
-            
-            gainNode.gain.setValueAtTime(volume, state.audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.0001, state.audioContext.currentTime + duration);
-            
-            osc.connect(gainNode);
-            gainNode.connect(state.audioContext.destination);
-            
-            osc.start();
-            osc.stop(state.audioContext.currentTime + duration);
-        } catch (e) {
-            console.warn("Audio Context error:", e);
-        }
-    }
-
     const soundEffects = {
-        hover: () => playSynthNote(800, 0.05, 'sine', 0.02),
-        click: () => playSynthNote(1200, 0.15, 'triangle', 0.04),
-        success: () => {
-            playSynthNote(600, 0.1, 'sine', 0.04);
-            setTimeout(() => playSynthNote(900, 0.15, 'sine', 0.04), 80);
-        },
-        error: () => {
-            playSynthNote(220, 0.3, 'sawtooth', 0.05);
-        },
-        synthClick: () => playSynthNote(1000, 0.03, 'sine', 0.03),
-        terminalKey: () => playSynthNote(600 + Math.random() * 400, 0.03, 'sine', 0.015),
-        toggle: () => {
-            playSynthNote(400, 0.05, 'triangle', 0.05);
-            setTimeout(() => playSynthNote(600, 0.08, 'triangle', 0.05), 50);
-        }
+        hover: () => {},
+        click: () => {},
+        success: () => {},
+        error: () => {},
+        synthClick: () => {},
+        terminalKey: () => {},
+        toggle: () => {}
     };
-
-    // Global interaction sound binder
-    function bindSoundEvents() {
-        const interactiveElements = document.querySelectorAll('a, button, .btn-icon, .timeline-card, .project-card, .terminal-close');
-        interactiveElements.forEach(el => {
-            // Prevent multiple bindings
-            if (el.dataset.soundBound) return;
-            el.dataset.soundBound = 'true';
-
-            el.addEventListener('mouseenter', () => {
-                soundEffects.hover();
-            });
-            el.addEventListener('click', () => {
-                soundEffects.click();
-            });
-        });
-    }
-
-    // Initialize Audio Toggle Action
-    if (audioToggleBtn) {
-        audioToggleBtn.addEventListener('click', () => {
-            state.audioEnabled = !state.audioEnabled;
-            localStorage.setItem('audioEnabled', state.audioEnabled);
-            soundEffects.toggle();
-            updateAudioIcon();
-        });
-        updateAudioIcon();
-    }
-
-    function updateAudioIcon() {
-        const enabledIcon = audioToggleBtn.querySelector('.audio-enabled');
-        const disabledIcon = audioToggleBtn.querySelector('.audio-disabled');
-        if (state.audioEnabled) {
-            enabledIcon.style.display = 'block';
-            disabledIcon.style.display = 'none';
-            audioToggleBtn.title = "Mute Sounds";
-        } else {
-            enabledIcon.style.display = 'none';
-            disabledIcon.style.display = 'block';
-            audioToggleBtn.title = "Unmute Sounds";
-        }
-    }
 
     // Initialize Theme Toggle Action
     if (themeToggleBtn) {
@@ -788,8 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initViraCanvas();
     initVastCanvas();
 
-    // Re-bind click sounds and hover elements
-    bindSoundEvents();
+
 
     // -------------------------------------------------------------
     // 8. Clipboard Contact Action
